@@ -1,13 +1,18 @@
 import React from 'react';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Button } from '@mui/material';
 
 function HomePage() {
   return (
     <Container>
       <Typography variant="h1" component="h1" align="center">
-        Welcome to the Blog And Article writing Application!
+        InkFlow!
       </Typography>
-      {/* Add the rest of the content for the home page */}
+      <Typography variant="subtitle1" align="center">
+        Get started by creating your first blog post or article.
+      </Typography>
+      <Button variant="contained" color="primary">
+        Create Post
+      </Button>
     </Container>
   );
 }
