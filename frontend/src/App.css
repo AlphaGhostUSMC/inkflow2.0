@@ -1,0 +1,25 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.logo img {
+  height: 40px;
+  /* Adjust the height as needed */
+}
+
+.navigation li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #333;
+}
+
+.user-actions a {
+  margin-left: 10px;
+}
