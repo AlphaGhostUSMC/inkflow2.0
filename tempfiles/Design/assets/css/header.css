@@ -1,0 +1,95 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: auto;
+  height: 110px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 2em;
+  background: #2C2C2C;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.app-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-image: linear-gradient(to right, #8e3aba, #27b5e9, #e3002c, #ea6272, #ef9aa1);
+}
+
+.city-search-container {
+  margin-right: 25px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo-container {
+  width: auto;
+  height: auto;
+  margin-left: 25px;
+}
+
+.brand-logo {
+  width: 150px;
+}
+
+.go-home, .sign-out {
+  color: #ed8691;
+  font-size: 25px;
+}
+
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.get-weather:focus {
+  outline: none;
+}
+
+.article-search-input:focus {
+  outline: none;
+}
+
+#article-search-input {
+  background: #ffffff00;
+  color: #87ceeb;
+  font-family: Anybody, serif;
+  font-style: italic;
+  font-size: 1em;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-bottom-style: solid;
+  border-bottom-color: #ef9aa1;
+  border-left-style: hidden;
+  margin-left: 10px;
+}
+
+.exit-container {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.go-home:active, .sign-out:active, .get-location:active {
+  transform: translateY(2px);
+}
+
