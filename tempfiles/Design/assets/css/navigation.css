@@ -1,32 +1,22 @@
 .vertical-nav {
-  width: 95px;
-  background-color: rgb(44,44,44);
-  padding: 20px;
+  width: 90px;
+  background-color: #2c2c2c;
+  /*padding: 25px;*/
   display: flex;
-  color: white;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   transition: width 0.3s ease-in-out;
   border-radius: 2em;
   /*border: 2px dotted turquoise;*/
-  margin-bottom: 10px;
-}
-
-.vertical-nav:hover {
-  width: 100px;
-}
-
-.logo img {
-  height: 40px;
-  margin-bottom: 20px;
+  /*margin-bottom: 10px;*/
 }
 
 .navigation {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 25px;
 }
 
 .navigation li {
@@ -43,11 +33,24 @@
 }
 
 .nav-icons {
-  font-size: 25px;
-  color: #ea6272;
+  width: 40px;
+  padding-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Add the following CSS to hide the scrollbar */
+.nav-icons:hover {
+  transform: scale(1.2);
+}
+
+.nav-icon:active {
+  transform: translateY(4px);
+}
+
+.body-container-main {
+}
+
+.body-container-main {
+}
 
 body::-webkit-scrollbar {
   width: 0.5em;
