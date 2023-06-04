@@ -1,5 +1,6 @@
 .vertical-nav {
   width: 90px;
+  height: calc(100vh - 140px);
   background-color: #2c2c2c;
   /*padding: 25px;*/
   display: flex;
@@ -42,14 +43,20 @@
   transform: scale(1.2);
 }
 
-.nav-icon:active {
-  transform: translateY(4px);
+.nav-icons:active {
+  transform: translateY(2px);
 }
 
 .body-container-main {
 }
 
 .body-container-main {
+}
+
+@media (width: 400px) {
+  .nav-icons {
+    width: 20px;
+  }
 }
 
 body::-webkit-scrollbar {
