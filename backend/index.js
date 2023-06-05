@@ -4,6 +4,7 @@ const app = express();
 const connectDB = require('./config/database');
 const User = require('./models/user');
 const bcrypt = require('bcryptjs');
+const e = require('express');
 
 connectDB();
 
@@ -30,8 +31,12 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
-  res.json(userDoc);
-
+  const passOK = bcrypt.compareSync(password, userDoc.password);
+  if (passOK) {
+    res.json(userDoc);
+  } else {
+    res.status(401).json({ message: 'Unauthorized' });
+  }
 });
 
 app.listen(4008);
