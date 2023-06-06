@@ -1,7 +1,26 @@
 import { Link } from 'react-router-dom';
 import logo from '../InkFlow Logo.svg';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
+  const [username, setUsername] = useState(null);
+  useEffect(() => {
+    fetch('http://localhost:4008/profile', {
+      credentials: 'include',
+    }).then(response => {
+      response.json().then(userInfo => {
+        setUsername(userInfo.username);
+      });
+    });
+  }, []);
+
+  function logout() {
+    fetch('http://localhost:4008/logout', {
+      credentials: 'include',
+      method: 'POST',
+    })
+  }
+
   return (
     <header>
       <div className="logo">
@@ -19,8 +38,18 @@ export default function Header() {
         </ul>
       </nav>
       <div className="user-actions">
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+        {username && (
+          <>
+            <Link to="/create">Create New Post</Link>
+            <a onClick={logout}>Logout</a>
+          </>
+        )}
+        {!username && (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        )}
       </div>
     </header>
   );
