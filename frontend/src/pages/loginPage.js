@@ -1,15 +1,26 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
   async function login(ev) {
     ev.preventDefault();
-    await fetch('http://localhost:4008/login', {
+    const response = await fetch('http://localhost:4008/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
-      headers: { 'content-type': 'application/json' }
-    })
+      headers: { 'content-type': 'application/json' },
+      credentials: 'include',
+    });
+    if (response.ok) {
+      setRedirect(true);
+    } else {
+      alert("Unauthorized User");
+    }
+  }
+  if (redirect) {
+    return <Navigate to={"/"} />
   }
   
   return (

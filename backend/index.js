@@ -4,14 +4,15 @@ const app = express();
 const connectDB = require('./config/database');
 const User = require('./models/user');
 const bcrypt = require('bcryptjs');
-const e = require('express');
+const jwt = require('jsonwebtoken');
 
 connectDB();
 
 const salt = bcrypt.genSaltSync(10);
+const secret = 'mysecretsshhh';
 
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
 
 
@@ -33,7 +34,10 @@ app.post('/login', async (req, res) => {
   const userDoc = await User.findOne({ username });
   const passOK = bcrypt.compareSync(password, userDoc.password);
   if (passOK) {
-    res.json(userDoc);
+    jwt.sign({username,id:userDoc._id}, secret, { expiresIn: '1h' }, (err, token) => {
+      if (err) throw err;
+      res.cookie('token', token, { httpOnly: true }).json({ token } );
+    });    
   } else {
     res.status(401).json({ message: 'Unauthorized' });
   }
