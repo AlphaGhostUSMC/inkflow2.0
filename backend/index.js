@@ -36,9 +36,9 @@ app.post('/login', async (req, res) => {
   const userDoc = await User.findOne({ username });
   const passOK = bcrypt.compareSync(password, userDoc.password);
   if (passOK) {
-    jwt.sign({ username, id: userDoc._id }, secret, { expiresIn: '1h' }, (err, token) => {
+    jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
-      res.cookie('token', token, { httpOnly: true }).json({ token });
+      res.cookie('token', token).json({ token });
     });
   } else {
     res.status(401).json({ message: 'Unauthorized' });
