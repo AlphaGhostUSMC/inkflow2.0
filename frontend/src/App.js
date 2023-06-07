@@ -6,23 +6,28 @@ import Layout from './components/layout';
 import IndexPage from './pages/indexPage';
 import LoginPage from './pages/loginPage';
 import RegisterPage from './pages/registerPage';
+import { UserContextProvider } from './components/userContext';
+import CreatePost from './pages/createPost';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<IndexPage />} />
-        <Route index element={
-          <Post />
-        } />
-        <Route path="/login" element={
-          <LoginPage />
-        } />
-        <Route path="/signup" element={
-          <RegisterPage />
-        } />
-      </Route>
-    </Routes>
+    <UserContextProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<IndexPage />} />
+          <Route index element={
+            <Post />
+          } />
+          <Route path="/login" element={
+            <LoginPage />
+          } />
+          <Route path="/signup" element={
+            <RegisterPage />
+          } />
+          <Route path="/create" element={<CreatePost />} />
+        </Route>
+      </Routes>
+    </UserContextProvider>
   );
 }
 
