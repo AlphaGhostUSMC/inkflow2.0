@@ -6,9 +6,12 @@ const User = require('./models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const fs = require('fs');
 
 connectDB();
 
+const uploadMiddleware = multer({ dest: 'uploads/' });
 const salt = bcrypt.genSaltSync(10);
 const secret = 'mysecretsshhh';
 
@@ -59,5 +62,15 @@ app.get('/profile', (req, res) => {
 app.post('/logout', (req, res) => {
   res.cookie('token', '').json({ message: 'Logged out' });
 });
+
+app.post('/post', uploadMiddleware.single('file'), (req, res) => {
+  const {originalname,path} = req.file;
+  const parts = originalname.split('.');
+  const ext = parts[parts.length - 1]
+  const newPath = path + '.' + ext;
+  fs.renameSync(path, newPath);
+  res.json({ext});
+});
+
 
 app.listen(4008);
