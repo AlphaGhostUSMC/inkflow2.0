@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const connectDB = require('./config/database');
 const User = require('./models/user');
+const Post = require('./models/post');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -63,13 +64,21 @@ app.post('/logout', (req, res) => {
   res.cookie('token', '').json({ message: 'Logged out' });
 });
 
-app.post('/post', uploadMiddleware.single('file'), (req, res) => {
-  const {originalname,path} = req.file;
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+  const { originalname, path } = req.file;
   const parts = originalname.split('.');
   const ext = parts[parts.length - 1]
   const newPath = path + '.' + ext;
   fs.renameSync(path, newPath);
-  res.json({ext});
+
+  const { title, summary, content } = req.body;
+  const postDoc = await Post.create({
+    title,
+    summary,
+    content,
+    cover: newPath,
+  });
+  res.json(postDoc);
 });
 
 
