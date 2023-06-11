@@ -8,6 +8,7 @@ import LoginPage from './pages/loginPage';
 import RegisterPage from './pages/registerPage';
 import { UserContextProvider } from './components/userContext';
 import CreatePost from './pages/createPost';
+import PostPage from './pages/postPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <RegisterPage />
           } />
           <Route path="/create" element={<CreatePost />} />
+          <Route path="/post/:id" element={<PostPage />} />
         </Route>
       </Routes>
     </UserContextProvider>

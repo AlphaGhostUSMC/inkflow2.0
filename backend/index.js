@@ -20,6 +20,7 @@ const secret = 'mysecretsshhh';
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
 
@@ -81,17 +82,20 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
       summary,
       content,
       cover: newPath,
+      author: info.id,
 
     });
     res.json(postDoc);
   });
-    res.json(info);
-  });
-
+});
 
 
 app.get('/post', async (req, res) => {
-  res.json(await Post.find());
+  res.json(
+    await Post.find()
+    .populate('author', 'username')
+    .sort({ createdAt: -1 })
+    .limit(10));
 });
 
 app.listen(4008);
