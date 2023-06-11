@@ -47,6 +47,13 @@ div.post {
   margin-bottom: 30px;
 }
 
+@media screen and (max-width: 800px) {
+  div.post {
+    grid-template-columns: 1.1fr;
+  }
+
+}
+
 div.post div.texts h2 {
   margin: 0;
   font-size: 1.8rem;
@@ -150,4 +157,35 @@ div.post-page div.author {
   margin-bottom: 20px;
   font: .7rem sans-serif;
   font-weight: bold;
+}
+
+div.post-page div.content p {
+  margin: 10px 0;
+  line-height: 1.4rem;
+}
+
+div.edit-row {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+div.post-page a.edit-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #3d3e3f;
+  color: #fff;
+  gap: 5px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+div.post-page a.edit-btn:hover {
+  background-color: #1a1a1a;
+}
+
+a svg {
+  width: 20px;
+  height: 20px;
 }
